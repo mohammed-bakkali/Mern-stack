@@ -1,3 +1,4 @@
+// main file
 const express = require("express");
 const app = express();
 const port = 3001;
@@ -25,13 +26,28 @@ liveReloadServer.server.once("connection", () => {
 // Process the GET request for the home page
 app.get("/", (req, res) => {
   // result ==> array of object
-  Mydata.find()
-    .then((result) => {
-      res.render("home", { mytitle: "Home page", arr: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+
+  res.render("index");
+
+  // Mydata.find()
+  //   .then((result) => {
+
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+});
+
+app.get("/user/add.html", (req, res) => {
+  res.render("user/add");
+});
+
+app.get("/user/view.html", (req, res) => {
+  res.render("user/view");
+});
+
+app.get("/user/edit.html", (req, res) => {
+  res.render("user/edit");
 });
 
 // Connect to the database
@@ -48,19 +64,4 @@ mongoose
     console.log(err);
   });
 
-// Process the POST request for data
-app.post("/", (req, res) => {
-  console.log(req.body);
 
-  const mydata = new Mydata(req.body);
-
-  mydata
-    .save()
-    .then(() => {
-      res.redirect("/index.html");
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send("Error saving data to database.");
-    });
-});
