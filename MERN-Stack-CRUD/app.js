@@ -9,36 +9,35 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // Auto refresh
-const path = require("path");
-const livereload = require("livereload");
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(path.join(__dirname, "public"));
+// const path = require("path");
+// const livereload = require("livereload");
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.watch(path.join(__dirname, "public"));
 
-const connectLivereload = require("connect-livereload");
-app.use(connectLivereload());
+// const connectLivereload = require("connect-livereload");
+// app.use(connectLivereload());
 
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
+// liveReloadServer.server.once("connection", () => {
+//   setTimeout(() => {
+//     liveReloadServer.refresh("/");
+//   }, 100);
+// });
 
-// Process the GET request for the home page
+// GET Requst 
 app.get("/", (req, res) => {
   // result ==> array of object
+  console.log("____________________________________________");
 
-  res.render("index");
+  User.find() // It is a query to search for all documents in the User group in the database.
+    .then((result) => {
+      res.render("index", {arr: result});
+    })
 
-  // Mydata.find()
-  //   .then((result) => {
-
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
-// GET Requst
 app.get("/user/add.html", (req, res) => {
   res.render("user/add");
 });
@@ -51,48 +50,20 @@ app.get("/user/edit.html", (req, res) => {
   res.render("user/edit");
 });
 
-
-
-
-
-
 // POST Requst
 app.post("/user/add.html", (req, res) => {
+  const user = new User(req.body);
 
-const user = new User(req.body)
-
-user.save().then(() => {
-  res.redirect("/user/add.html")
-
-}).catch((err) => {
-console.log(err)
-})
-
-
+  user
+    .save()
+    .then(() => {
+      console.log('User saved successfully');
+      res.redirect("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Connect to the database
 mongoose
