@@ -1,3 +1,4 @@
+// Data Structure file 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
