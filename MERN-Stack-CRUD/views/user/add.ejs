@@ -7,7 +7,6 @@
       href="../bootstrap-icons-1.10.5/font/bootstrap-icons.min.css"
     />
 
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
@@ -21,7 +20,7 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- css Dark and Light -->
-    <link rel="stylesheet" href="../css/dark-light.css">
+    <link rel="stylesheet" href="../css/dark-light.css" />
 
     <!-- Custom styles for this template -->
     <link href="../css/sidebars.css" rel="stylesheet" />
@@ -39,84 +38,88 @@
         <!-- Navbar -->
         <%- include('../Components/navbar.ejs') %>
 
-        <form class="mx-0 row gx-3 gy-4 mt-3">
+        <form action="/user/add.html" method="post" class="mx-0 row gx-3 gy-4 mt-3">
           <div class="col-md-6">
             <label for="inputfirstName4" class="form-label">First Name:</label>
             <input
-              placeholder="Ali..."
               type="text"
               class="form-control"
               id="inputfirstName4"
+              name="firstName"
+              placeholder="Your First Name..."
+              required
             />
           </div>
           <div class="col-md-6">
             <label for="inputlastName4" class="form-label">Last Name:</label>
             <input
-              placeholder="Hassan..."
               type="text"
               class="form-control"
               id="inputlastName4"
+              name="lastName"
+              placeholder="Your Last Name..."
+              required
             />
           </div>
-
+        
           <div class="col-md-6">
             <label for="inputemail4" class="form-label">Email:</label>
             <input
-              placeholder="ali@gmail.com"
               type="email"
               class="form-control"
               id="inputemail4"
+              name="email"
+              placeholder="example@gmail.com"
+              required
             />
           </div>
           <div class="col-md-6">
             <label for="inputtele4" class="form-label">Telephone:</label>
             <input
-              placeholder="011987899"
-              type="number"
+              type="text"
               class="form-control"
               id="inputtele4"
+              name="phoneNumber"
+              placeholder="Your Phone Number..."
+              required
             />
           </div>
-
-          <div>
-            <div class="col-md-6">
-              <label for="inputage4" class="form-label">Age:</label>
-              <input
-                placeholder="Your Age: ..."
-                type="number"
-                class="form-control"
-                id="inputage4"
-              />
-            </div>
+        
+          <div class="col-md-6">
+            <label for="inputage4" class="form-label">Age:</label>
+            <input
+              type="number"
+              class="form-control"
+              id="inputage4"
+              name="age"
+              placeholder="Your Age..."
+              required
+            />
           </div>
-
-          <div>
-            <div class="col-md-6">
-              <label for="inputCountry" class="form-label">Country:</label>
-              <select id="inputCountry" class="form-select">
-                <option selected hidden disabled>Choose here ...</option>
-
-                <option>Morocco</option>
-                <option>Egypt</option>
-              </select>
-            </div>
+        
+          <div class="col-md-6">
+            <label for="inputCountry" class="form-label">Country:</label>
+            <select id="inputCountry" class="form-select" name="country" required>
+              <option value="" selected hidden disabled>Choose your country...</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Egypt">Egypt</option>
+            </select>
           </div>
-
-          <div>
-            <div class="col-md-6">
-              <label for="inputGender" class="form-label">Gender:</label>
-              <select id="inputGender" class="form-select">
-                <option selected hidden disabled>Choose here ...</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </div>
+        
+          <div class="col-md-6">
+            <label for="inputGender" class="form-label">Gender:</label>
+            <select id="inputGender" class="form-select" name="gender" required>
+              <option value="" selected hidden disabled>Choose your gender...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
           </div>
-
+        
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </form>
+        
       </section>
     </main>
     <script src="../js/bootstrap.bundle.min.js"></script>

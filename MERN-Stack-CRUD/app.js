@@ -4,7 +4,7 @@ const app = express();
 const port = 3001;
 const mongoose = require("mongoose");
 app.use(express.urlencoded({ extended: true }));
-const Mydata = require("./models/MyDataSchema");
+const User = require("./models/CustomerSchema");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
   //   });
 });
 
+// GET Requst
 app.get("/user/add.html", (req, res) => {
   res.render("user/add");
 });
@@ -49,6 +50,49 @@ app.get("/user/view.html", (req, res) => {
 app.get("/user/edit.html", (req, res) => {
   res.render("user/edit");
 });
+
+
+
+
+
+
+// POST Requst
+app.post("/user/add.html", (req, res) => {
+
+const user = new User(req.body)
+
+user.save().then(() => {
+  res.redirect("/user/add.html")
+
+}).catch((err) => {
+console.log(err)
+})
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Connect to the database
 mongoose
@@ -63,5 +107,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-
